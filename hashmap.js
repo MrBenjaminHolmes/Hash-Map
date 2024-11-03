@@ -106,6 +106,18 @@ class HashMap {
     return values;
   }
 
+  enteries() {
+    const enteries = [];
+    for (let bucket of this.bucketArray) {
+      if (bucket) {
+        for (let pair of bucket) {
+          enteries.push(pair);
+        }
+      }
+    }
+    return enteries;
+  }
+
   indexError(index) {
     if (index < 0 || index >= this.bucketArray.length) {
       throw new Error("Trying to access index out of bound");
