@@ -118,6 +118,22 @@ class HashMap {
     return enteries;
   }
 
+  resize() {
+    console.log("Resizing...");
+    const oldBucketArray = this.bucketArray;
+    this.bucketArray = new Array(this.arraySize * 2);
+    this.arraySize = this.bucketArray.length;
+    this.length = 0;
+
+    for (let bucket of oldBucketArray) {
+      if (bucket) {
+        for (const [key, value] of bucket) {
+          this.set(key, value);
+        }
+      }
+    }
+  }
+
   indexError(index) {
     if (index < 0 || index >= this.bucketArray.length) {
       throw new Error("Trying to access index out of bound");
